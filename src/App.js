@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Menu from './components/Menu'
+import {ToastContainer} from 'react-toastify'
+import Home from './components/Home'
+import Create from './components/Create'
+import Update from './components/Update'
+import Pnf from './components/Pnf'
+import Products from './components/screens/Products'
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+       <Menu />
+  <ToastContainer  autoClose={4000}  position={'top-right'} />
+       <Routes>
+           <Route path={`/`} element={<Home />} />
+           <Route path={`/create`} element={<Create />} />
+           <Route path={`/category/:cName/products`} element={<Products/>} />
+           <Route path={`/update/:id`} element={<Update />} />
+           <Route path={`/*`} element={<Pnf />} />
+       </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
